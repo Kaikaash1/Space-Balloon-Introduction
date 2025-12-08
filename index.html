@@ -6,32 +6,38 @@
 <title>New Space Team Members</title>
 
 <style>
+/* ===== GLOBAL RESET ===== */
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat fixed;
   background-color: #0a0f1c;
   color: white;
+  overflow-x: hidden;
 }
 
 .overlay {
   background: rgba(5, 12, 23, 0.7);
   min-height: 100vh;
-  padding: 20px;
+  padding: clamp(12px, 3vw, 20px);
   backdrop-filter: blur(8px);
 }
 
+/* ===== HEADER ===== */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   max-width: 1200px;
   margin: auto;
-  padding: 20px 0;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: bold;
   color: #fceabd;
   padding: 10px 15px;
@@ -40,7 +46,7 @@ header {
 }
 
 .subtitle {
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 3vw, 1rem);
   color: #fceabd;
   margin-top: 5px;
   padding: 5px 10px;
@@ -48,26 +54,35 @@ header {
   border-radius: 8px;
 }
 
-/* ===== INTRO SCALE FIX ===== */
+.lang-toggle {
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===== INTRO ===== */
 .intro-section {
   max-width: 1200px;
-  margin: 40px auto;
-  padding: 30px;
+  margin: clamp(20px, 5vw, 40px) auto;
+  padding: clamp(20px, 4vw, 30px);
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(8px);
   border-radius: 15px;
 }
 
 .intro-content h2 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   line-height: 1.3;
   min-height: 2.6em;
-  margin: 0 0 15px;
+  margin-bottom: 15px;
   color: #fceabd;
 }
 
 .intro-content p {
-  font-size: 1rem;
+  font-size: clamp(0.95rem, 2.8vw, 1rem);
   line-height: 1.6;
   min-height: 3.2em;
   margin: 10px 0;
@@ -75,17 +90,21 @@ header {
 
 #introText2 {
   font-weight: 600;
-  min-height: 1.6em;
-  margin-top: 15px;
+}
+
+.intro-content ul {
+  padding-left: 20px;
+  line-height: 1.6;
+  font-size: clamp(0.9rem, 2.8vw, 1rem);
 }
 
 /* ===== TEAM GRID ===== */
 .team-grid {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: clamp(20px, 5vw, 40px) auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(15px, 3vw, 20px);
 }
 
 .card {
@@ -101,19 +120,19 @@ header {
 
 .card-img {
   width: 100%;
-  height: 300px;
+  height: clamp(220px, 40vw, 300px);
   object-fit: cover;
 }
 
 .card-body { padding: 15px; }
 
-.card-body p {
-  min-height: 2.8em;
-}
+.card-body h3 { font-size: clamp(1rem, 3vw, 1.1rem); }
+
+.card-body p { min-height: 2.8em; font-size: clamp(0.85rem, 2.5vw, 0.95rem); }
 
 /* ===== BUTTONS ===== */
-.lang-toggle, .reset-btn {
-  padding: 8px 12px;
+.reset-btn {
+  padding: 10px 14px;
   background: rgba(255,255,255,0.15);
   border: none;
   border-radius: 6px;
@@ -132,74 +151,94 @@ header {
   visibility: hidden;
   opacity: 0;
   transition: 0.3s;
+  padding: 15px;
 }
 
-.modal-bg.active {
-  visibility: visible;
-  opacity: 1;
-}
+.modal-bg.active { visibility: visible; opacity: 1; }
 
 .modal {
   background: rgba(15, 20, 35, 0.95);
-  padding: 20px;
+  padding: clamp(16px, 4vw, 25px);
   max-width: 700px;
-  width: 90%;
+  width: 100%;
   border-radius: 15px;
+  color: white;
+  position: relative;
 }
 
-.modal p {
-  line-height: 1.5;
-  min-height: 1.8em;
-}
+.modal h2 { font-size: clamp(1.3rem, 4vw, 1.6rem); margin: 0 0 8px 0; }
+
+.modal p { line-height: 1.5; font-size: clamp(0.9rem, 3vw, 1rem); min-height: 1.6em; margin: 6px 0; }
 
 .close-btn {
   background: none;
   border: none;
   color: white;
-  font-size: 20px;
+  font-size: 22px;
   cursor: pointer;
-  float: right;
+  position: absolute;
+  right: 14px;
+  top: 12px;
+}
+
+/* ===== SMALL SCREEN TWEAKS ===== */
+@media (max-width: 480px) {
+  .card-body p { min-height: 2.4em; }
+  .intro-content p { min-height: 2.6em; }
 }
 </style>
 </head>
 
 <body>
 <div class="overlay">
-<header>
-  <div>
-    <div class="title">New Space Team</div>
-    <div class="subtitle">New Mongol Kosen Space Balloon</div>
-  </div>
-  <button class="lang-toggle" id="langBtn">EN</button>
-</header>
+  <header>
+    <div>
+      <div class="title">New Space Team</div>
+      <div class="subtitle">New Mongol Kosen Space Balloon</div>
+    </div>
+    <button class="lang-toggle" id="langBtn">EN</button>
+  </header>
 
-<section class="intro-section">
-  <div class="intro-content">
-    <h2 id="introTitle"></h2>
-    <p id="introText"></p>
-    <p id="introText2"></p>
-    <ul>
-      <li>2022 CanSat Japan Competition – 3rd Place</li>
-      <li>2023 CanSat Japan Competition – 2nd Place</li>
-    </ul>
-  </div>
-</section>
+  <section class="intro-section">
+    <div class="intro-content">
+      <h2 id="introTitle"></h2>
+      <p id="introText"></p>
+      <p id="introText2"></p>
+      <ul id="achievementsList">
+        <li>2022 CanSat Japan Competition – 3rd Place</li>
+        <li>2023 CanSat Japan Competition – 2nd Place</li>
+      </ul>
+    </div>
+  </section>
 
-<section class="team-grid" id="teamGrid"></section>
+  <section class="team-grid" id="teamGrid"></section>
 </div>
 
-<div class="modal-bg" id="modalBg">
-<div class="modal">
-  <button class="close-btn" onclick="closeModal()">×</button>
-  <h2 id="modalName"></h2>
-  <p id="modalClass"></p>
-  <p id="modalRole"></p>
-  <p id="modalBio"></p>
-</div>
+<!-- Modal -->
+<div class="modal-bg" id="modalBg" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+    <button class="close-btn" id="closeBtn" aria-label="Close">×</button>
+    <h2 id="modalName"></h2>
+    <p id="modalClass"></p>
+    <p id="modalRole"></p>
+    <p id="modalBio"></p>
+  </div>
 </div>
 
 <script>
+/* ===== Elements ===== */
 const langBtn = document.getElementById("langBtn");
+const introTitle = document.getElementById("introTitle");
+const introText = document.getElementById("introText");
+const introText2 = document.getElementById("introText2");
+const teamGrid = document.getElementById("teamGrid");
+const modalBg = document.getElementById("modalBg");
+const modalName = document.getElementById("modalName");
+const modalClass = document.getElementById("modalClass");
+const modalRole = document.getElementById("modalRole");
+const modalBio = document.getElementById("modalBio");
+const closeBtn = document.getElementById("closeBtn");
+
 let lang = "EN";
 
 const introContent = {
@@ -242,46 +281,72 @@ const members = [
   }
 ];
 
+/* ===== Render members ===== */
 function renderMembers() {
-  const grid = document.getElementById("teamGrid");
-  grid.innerHTML = "";
+  teamGrid.innerHTML = "";
   members.forEach(m => {
-    grid.innerHTML += `
-      <div class="card">
-        <img class="card-img" src="${m.avatar}">
-        <div class="card-body">
-          <h3>${m.name[lang]}</h3>
-          <p>${m.class[lang]}</p>
-          <p style="color:#ffdd88;">${m.role[lang]}</p>
-          <button class="reset-btn" onclick="openModal(${m.id})">More</button>
-        </div>
-      </div>`;
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img class="card-img" src="${m.avatar}" alt="${m.name[lang]} photo">
+      <div class="card-body">
+        <h3>${m.name[lang]}</h3>
+        <p>${m.class[lang]}</p>
+        <p style="color:#ffdd88;">${m.role[lang]}</p>
+        <button class="reset-btn" data-id="${m.id}">More</button>
+      </div>
+    `;
+    teamGrid.appendChild(card);
+  });
+
+  // attach buttons
+  document.querySelectorAll(".reset-btn").forEach(btn => {
+    btn.addEventListener("click", () => openModal(Number(btn.dataset.id)));
   });
 }
 
+/* ===== Modal functions ===== */
 function openModal(id) {
   const m = members.find(x => x.id === id);
+  if (!m) return;
   modalName.textContent = m.name[lang];
   modalClass.textContent = m.class[lang];
   modalRole.textContent = m.role[lang];
-  modalBio.textContent = m.bio[lang];
+  modalBio.textContent = m.bio[lang] || "";
   modalBg.classList.add("active");
+  modalBg.setAttribute("aria-hidden", "false");
 }
 
 function closeModal() {
   modalBg.classList.remove("active");
+  modalBg.setAttribute("aria-hidden", "true");
 }
 
-langBtn.onclick = () => {
-  lang = lang === "EN" ? "JP" : "EN";
-  langBtn.textContent = lang;
+/* close modal when clicking outside modal */
+modalBg.addEventListener("click", (e) => {
+  if (e.target === modalBg) closeModal();
+});
+closeBtn.addEventListener("click", closeModal);
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+
+/* ===== Language toggle ===== */
+function applyLanguage() {
   introTitle.textContent = introContent[lang].title;
   introText.textContent = introContent[lang].text1;
   introText2.textContent = introContent[lang].text2;
+  // update achievements label if you want localized list headings (list items kept same)
+  document.getElementById("achievementsList").previousElementSibling && (document.getElementById("achievementsList").previousElementSibling.textContent = introContent[lang].text2);
   renderMembers();
-};
+  langBtn.textContent = lang;
+}
 
-langBtn.onclick();
+langBtn.addEventListener("click", () => {
+  lang = (lang === "EN") ? "JP" : "EN";
+  applyLanguage();
+});
+
+/* initialize */
+applyLanguage();
 </script>
 
 </body>
